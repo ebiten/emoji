@@ -8,6 +8,6 @@ Package emoji provides Emoji images for Ebiten.
 
 ```go
 func (*YourGame) Draw(screen *ebiten.Image) {
-    screen.DrawImage(emoji.Get("🍣", nil))
+    screen.DrawImage(emoji.Image("🍣", nil))
 }
 ```
