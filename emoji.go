@@ -28,6 +28,10 @@ func Image(str string) *ebiten.Image {
 	ebitenImagesM.Lock()
 	defer ebitenImagesM.Unlock()
 
+	if img, ok := ebitenImages[str]; ok {
+		return img
+	}
+
 	path := "image/emoji_u"
 	for i, r := range str {
 		if i > 0 {
@@ -36,10 +40,6 @@ func Image(str string) *ebiten.Image {
 		path += fmt.Sprintf("%x", r)
 	}
 	path += ".png"
-
-	if img, ok := ebitenImages[path]; ok {
-		return img
-	}
 
 	f, err := pngImages.Open(path)
 	if err != nil {
